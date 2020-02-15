@@ -1,8 +1,9 @@
-package dao;
+package spring.intro.dao.impl;
 
-import dao.impl.UserDao;
 import java.util.List;
-import model.User;
+
+import spring.intro.dao.UserDao;
+import spring.intro.model.User;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,6 +43,19 @@ public class UserDaoImpl implements UserDao {
             return query.list();
         } catch (Exception e) {
             throw new RuntimeException("Can't get all users", e);
+        }
+    }
+
+    @Override
+    public User get(Long id) {
+        try {
+            Session session = sessionFactory.openSession();
+            Query<User> query = session.createQuery(
+                    "from User where id=: id", User.class);
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get user", e);
         }
     }
 }

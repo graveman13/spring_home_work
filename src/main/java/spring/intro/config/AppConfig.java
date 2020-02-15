@@ -1,9 +1,9 @@
-package config;
+package spring.intro.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;
 
-import model.User;
+import spring.intro.model.User;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,10 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @Configurable
 @PropertySource("classpath:db.properties")
-@ComponentScan(basePackages = {"dao", "service"})
+@ComponentScan(basePackages = {"spring.intro.dao", "spring.intro.service"})
 public class AppConfig {
     @Autowired
     private Environment environment;
-
     @Bean
     public DataSource getDataSourse() {
         BasicDataSource dataSource = new BasicDataSource();
