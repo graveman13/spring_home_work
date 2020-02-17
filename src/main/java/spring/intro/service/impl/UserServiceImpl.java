@@ -1,15 +1,14 @@
-package service;
+package spring.intro.service.impl;
 
-import dao.impl.UserDao;
+import spring.intro.dao.UserDao;
 
 import java.util.List;
 
-import model.User;
+import spring.intro.model.User;
+import spring.intro.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import service.impl.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,5 +23,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> listUsers() {
         return userDao.listUsers();
+    }
+
+    @Override
+    public User get(Long id) {
+        return userDao.get(id);
     }
 }
